@@ -22,3 +22,15 @@ after_success:
   - docker push bxhu/dockerfibonacci-worker
   - docker push bxhu/dockerfibonacci-nginx
 
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-1
+  app: dockerfibonacci
+  env: Dockerfibonacci-env
+  bucket_name: elasticbeanstalk-us-east-1-235120284424
+  bucket_path: docker-fibonacci
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
